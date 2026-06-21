@@ -220,4 +220,835 @@
     .cat-order-btn:hover:not(:disabled){border-color:#2A3D2E;color:#2A3D2E}
     .cat-order-btn:disabled{opacity:.25;cursor:default}
     .new-cat-row{display:flex;gap:7px;align-items:center}
-    .btn-add-cat{background:#C8A45A;color:#fff;border:none;padding:10px 13px;border-radius:9px;font-family:inherit;font-size:13px;font-weight:700;cursor:p
+    .btn-add-cat{background:#C8A45A;color:#fff;border:none;padding:10px 13px;border-radius:9px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+
+    /* ── INGREDIENTS ── */
+    .ing-list{display:flex;flex-direction:column;gap:5px;max-height:130px;overflow-y:auto}
+    .ing-item{display:flex;align-items:center;gap:8px;background:#F7F6F3;border-radius:8px;padding:8px 10px}
+    .ing-cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .ing-name{flex:1;font-size:13px;font-weight:600}
+    .ing-qty-badge{font-size:12px;color:#999;background:#ECECEC;padding:2px 8px;border-radius:12px;white-space:nowrap}
+    .ing-del{background:none;border:none;color:#CCC;font-size:15px;cursor:pointer;padding:0 3px;transition:color .12s;line-height:1}
+    .ing-del:hover{color:#C94040}
+    .ing-add-block{display:flex;flex-direction:column;gap:6px}
+    .ing-add-row{display:flex;gap:6px}
+    .ing-input{padding:9px 10px;border:1.5px solid #E0DDD6;border-radius:9px;font-family:inherit;font-size:13px;background:#F0EDE6;outline:none;flex:1;min-width:0}
+    .ing-input:focus{border-color:#2A3D2E}
+    .ing-input::placeholder{color:#C0BCB6}
+    .ing-qty-input{width:72px;flex:none}
+    .ing-add-btn{background:#2A3D2E;color:#fff;border:none;padding:9px 11px;border-radius:9px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+    .ing-cat-row{display:flex;gap:6px;align-items:center}
+    .ing-cat-select{flex:1;padding:9px 10px;border:1.5px solid #E0DDD6;border-radius:9px;font-family:inherit;font-size:13px;background:#F0EDE6;outline:none;cursor:pointer;color:#1C1C1C}
+
+    /* ── ADD TO COURSES MODAL ── */
+    .select-all-row{display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;border-bottom:1px solid #F0EDE6}
+    .select-all-btn{background:none;border:none;color:#2A3D2E;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:4px 0}
+    .select-count{font-size:12px;color:#999}
+    .ing-select-list{display:flex;flex-direction:column;max-height:220px;overflow-y:auto}
+    .ing-check-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #F7F6F3;cursor:pointer;transition:opacity .15s}
+    .ing-check-row:last-child{border-bottom:none}
+    .ing-checkbox{width:22px;height:22px;border-radius:6px;border:2px solid #E0DDD6;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;transition:all .15s;flex-shrink:0}
+    .ing-checkbox.on{background:#4A9E5C;border-color:#4A9E5C}
+    .ing-check-info{flex:1;min-width:0}
+    .ing-check-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ing-check-qty{font-size:12px;color:#999}
+    .ing-check-cat{font-size:11px;color:#C8A45A;font-weight:600;white-space:nowrap}
+
+    /* ── EMOJI ── */
+    .emoji-grid{display:flex;gap:7px;flex-wrap:wrap}
+    .emo-btn{width:40px;height:40px;border-radius:9px;border:2px solid #E0DDD6;background:#F0EDE6;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s}
+    .emo-btn.sel{border-color:#2A3D2E;background:#F5EBD0}
+    .srv-row{display:flex;align-items:center;gap:14px}
+    .srv-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid #E0DDD6;background:#F0EDE6;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#2A3D2E;font-weight:600}
+    .srv-btn:active{background:#F5EBD0;border-color:#C8A45A}
+    .srv-val{font-size:20px;font-weight:800;color:#2A3D2E;min-width:28px;text-align:center}
+
+    /* ── EXPENSE MODAL ── */
+    .store-picks{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+    .store-pick{background:#F0EDE6;border:1.5px solid #E0DDD6;border-radius:20px;padding:5px 13px;font-family:inherit;font-size:12px;font-weight:600;color:#555;cursor:pointer;transition:all .15s}
+    .store-pick.sel,.store-pick:active{background:#2A3D2E;color:#fff;border-color:#2A3D2E}
+    .amount-wrap{position:relative}
+    .amount-wrap .text-input{padding-right:28px}
+    .amount-suffix{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:700;color:#AAA;pointer-events:none}
+
+    /* ── TOAST ── */
+    .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#2A3D2E;color:#fff;padding:10px 20px;border-radius:22px;font-size:13px;font-weight:700;z-index:400;white-space:nowrap;pointer-events:none;animation:ta 2.4s ease forwards}
+    @keyframes ta{0%{opacity:0;transform:translateX(-50%) translateY(8px)}12%{opacity:1;transform:translateX(-50%) translateY(0)}78%{opacity:1}100%{opacity:0}}
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const { createClient } = supabase;
+
+/* ── CONSTANTS ─────────────────────────────────────────────── */
+const RECIPE_LISTS = ["Recettes maison","Recettes boulot Mathias","Recettes boulot Alexia","Idée recette"];
+const LIST_ICONS   = ["🏠","💼","💼","💡"];
+const EMOJIS = ["🍝","🍗","🥗","🍕","🥩","🥘","🍜","🍲","🐟","🥚","🌮","🍱","🥞","🍛","🥙","🫕","🫔","🥜","🧆","🧇"];
+const COLORS = ["#4A7C59","#C8A45A","#D4747A","#7A8DC8","#8AC8C0","#C89A5C","#A08AC8","#6BA3BE","#BE8C6B","#7ABE8C","#BE7A7A","#8ABE7A"];
+const FR_MONTHS   = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+const FR_MONTHS_S = ["jan","fév","mar","avr","mai","jun","jul","aoû","sep","oct","nov","déc"];
+
+const SQL = `-- ① Coller dans Supabase → SQL Editor → New query
+
+CREATE TABLE categories (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL, sort_order INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+INSERT INTO categories (name, sort_order) VALUES
+  ('Légumes',0),('Fruits',1),('Viandes & Poissons',2),
+  ('Produits laitiers',3),('Épicerie',4),('Boissons',5),('Hygiène',6),('Autre',7);
+ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "allow_all" ON categories FOR ALL USING (true);
+
+CREATE TABLE grocery_items (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL, quantity TEXT,
+  category TEXT DEFAULT 'Autre', checked BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE grocery_items ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "allow_all" ON grocery_items FOR ALL USING (true);
+
+CREATE TABLE recipes (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL, description TEXT,
+  list_index INTEGER DEFAULT 0, servings INTEGER DEFAULT 2,
+  emoji TEXT DEFAULT '🍝', ingredients JSONB DEFAULT '[]', photo TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE recipes ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "allow_all" ON recipes FOR ALL USING (true);
+
+CREATE TABLE expenses (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  store TEXT NOT NULL, amount NUMERIC(10,2) NOT NULL,
+  expense_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  session_id TEXT, created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE expenses ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "allow_all" ON expenses FOR ALL USING (true);
+
+-- ② Activer Realtime : Supabase → Database → Replication
+--    Cocher : categories, grocery_items, recipes, expenses
+
+-- ③ Si les tables existent déjà (mise à jour) exécute seulement :
+-- ALTER TABLE recipes ADD COLUMN IF NOT EXISTS photo TEXT;`;
+
+/* ── STATE ──────────────────────────────────────────────────── */
+let db = null;
+let S = {
+  configured:false, tab:'courses', shoppingMode:false, shoppingSessionId:null,
+  categories:[], groceries:[], recipes:[], expenses:[],
+  syncStatus:'connecting', recipeList:0, bilanPeriod:'semaine',
+  modal:null,
+  newName:'', newQty:'', newCat:'',
+  editItemId:null,
+  editingCatIdx:null, editingCatVal:'', newCatName:'',
+  recipeFormId:null,
+  recipeForm:{name:'',description:'',servings:2,emoji:'🍝',ingredients:[],photo:null},
+  newIngName:'', newIngQty:'', newIngCat:'',
+  addToCoursesRecipe:null, selectedIngs:{},
+  copyRecipeId:null,
+  expenseForm:{store:'',amount:'',date:''},
+  editExpenseId:null, expandedBilanKey:null,
+};
+
+/* ── UTILS ──────────────────────────────────────────────────── */
+const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const getCatColor = cat => { const i=S.categories.findIndex(c=>c.name===cat); return COLORS[i>=0?i%COLORS.length:COLORS.length-1]; };
+const fmt = n => parseFloat(n||0).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const todayStr = () => new Date().toISOString().split('T')[0];
+
+const getWeekMonday = ds => { const d=new Date(ds+'T12:00:00'),day=d.getDay(); d.setDate(d.getDate()-(day===0?6:day-1)); return d.toISOString().split('T')[0]; };
+const getMonthKey = ds => { const d=new Date(ds+'T12:00:00'); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; };
+const fmtWeekLabel = ds => {
+  const mon=new Date(ds+'T12:00:00'), sun=new Date(mon); sun.setDate(mon.getDate()+6);
+  const [d1,m1]=[mon.getDate(),FR_MONTHS_S[mon.getMonth()]];
+  const [d2,m2]=[sun.getDate(),FR_MONTHS[sun.getMonth()]];
+  return mon.getMonth()===sun.getMonth()?`${d1} – ${d2} ${m2}`:`${d1} ${m1} – ${d2} ${m2}`;
+};
+const fmtMonthLabel = ds => { const d=new Date(ds+'T12:00:00'); return `${FR_MONTHS[d.getMonth()]} ${d.getFullYear()}`; };
+const fmtShortDate = ds => { if(!ds) return ''; const d=new Date(ds+'T12:00:00'); return `${d.getDate()} ${FR_MONTHS_S[d.getMonth()]}`; };
+const fmtShortWeekLabel = key => { const d=new Date(key+'T12:00:00'); return `${d.getDate()}/${d.getMonth()+1}`; };
+const fmtShortMonthLabel = key => { const m=parseInt(key.split('-')[1],10); return FR_MONTHS_S[m-1]; };
+
+/* ── QUANTITY MERGE (feature: fusion d'ingrédients identiques) ─ */
+function parseQty(q){
+  if(!q) return null;
+  const m=String(q).trim().match(/^([\d]+(?:[.,]\d+)?)\s*(.*)$/);
+  if(!m) return null;
+  return {num:parseFloat(m[1].replace(',','.')), unit:m[2].trim().toLowerCase()};
+}
+function mergeQuantities(a,b){
+  a=(a||'').trim(); b=(b||'').trim();
+  if(!a) return b;
+  if(!b) return a;
+  if(a.toLowerCase()===b.toLowerCase()) return a;
+  const qa=parseQty(a), qb=parseQty(b);
+  if(qa&&qb&&qa.unit===qb.unit){
+    const sum=qa.num+qb.num;
+    const sumStr=Number.isInteger(sum)?String(sum):String(Math.round(sum*100)/100);
+    return qa.unit?`${sumStr} ${qa.unit}`:sumStr;
+  }
+  return `${a} + ${b}`;
+}
+
+const groupExpenses = (exps, period) => {
+  const groups={};
+  exps.forEach(e => {
+    const date=e.expense_date||todayStr();
+    const key=period==='semaine'?getWeekMonday(date):getMonthKey(date);
+    const label=period==='semaine'?fmtWeekLabel(date):fmtMonthLabel(date);
+    if(!groups[key]) groups[key]={key,label,items:[]};
+    groups[key].items.push(e);
+  });
+  return Object.values(groups)
+    .sort((a,b)=>b.key.localeCompare(a.key)).slice(0,period==='semaine'?10:6)
+    .map(g => {
+      const total=g.items.reduce((s,e)=>s+parseFloat(e.amount||0),0);
+      const byStore={};
+      g.items.forEach(e=>{byStore[e.store]=(byStore[e.store]||0)+parseFloat(e.amount||0);});
+      const stores=Object.entries(byStore).map(([store,amount])=>({store,amount,pct:total>0?Math.round(amount/total*100):0})).sort((a,b)=>b.amount-a.amount);
+      return {...g,total,stores};
+    });
+};
+
+/* ── HISTORY ────────────────────────────────────────────────── */
+const getHist = () => { try{return JSON.parse(localStorage.getItem('nhist')||'[]');}catch{return[];} };
+const addToHist = (name,qty,cat) => { const h=[{name,quantity:qty,category:cat},...getHist().filter(x=>x.name.toLowerCase()!==name.toLowerCase())].slice(0,60); localStorage.setItem('nhist',JSON.stringify(h)); };
+
+/* ── SUPABASE ───────────────────────────────────────────────── */
+function initDB(url,key){ db=createClient(url,key); }
+
+function subscribeRealtime(){
+  db.channel('app-sync')
+    .on('postgres_changes',{event:'*',schema:'public',table:'categories'},()=>fetchCategories())
+    .on('postgres_changes',{event:'*',schema:'public',table:'grocery_items'},()=>fetchGroceries())
+    .on('postgres_changes',{event:'*',schema:'public',table:'recipes'},()=>fetchRecipes())
+    .on('postgres_changes',{event:'*',schema:'public',table:'expenses'},()=>fetchExpenses())
+    .subscribe(status=>{
+      S.syncStatus=status==='SUBSCRIBED'?'connected':(status==='CLOSED'||status==='CHANNEL_ERROR'?'error':'connecting');
+      updateSyncUI();
+    });
+}
+
+function updateSyncUI(){
+  const colors={connecting:'#F59E0B',connected:'#4ADE80',error:'#F87171'};
+  const labels={connecting:'Connexion…',connected:'Synchro',error:'Erreur'};
+  const dot=document.querySelector('.sync-dot');
+  const lbl=document.querySelector('.sync-label');
+  if(dot){dot.style.background=colors[S.syncStatus];dot.style.animation=S.syncStatus==='connected'?'blink 2.5s infinite':'none';}
+  if(lbl) lbl.textContent=labels[S.syncStatus];
+}
+
+/* ── FETCH ──────────────────────────────────────────────────── */
+async function fetchCategories(){
+  const {data,error}=await db.from('categories').select('*').order('sort_order').order('created_at');
+  if(error){console.error('categories:',error);return;}
+  S.categories=data||[];
+  if(!S.categories.some(c=>c.name===S.newCat)) S.newCat=S.categories[0]?.name||'';
+  if(!S.categories.some(c=>c.name===S.newIngCat)) S.newIngCat=S.categories[0]?.name||'';
+  render();
+}
+async function fetchGroceries(){
+  const {data}=await db.from('grocery_items').select('*').order('created_at');
+  S.groceries=data||[]; render();
+}
+async function fetchRecipes(){
+  const {data}=await db.from('recipes').select('*').order('created_at');
+  S.recipes=data||[]; render();
+}
+async function fetchExpenses(){
+  const {data}=await db.from('expenses').select('*').order('expense_date',{ascending:false}).order('created_at',{ascending:false});
+  S.expenses=data||[]; render();
+}
+async function fetchAll(){ await Promise.all([fetchCategories(),fetchGroceries(),fetchRecipes(),fetchExpenses()]); }
+
+/* ── CATEGORIES CRUD ────────────────────────────────────────── */
+async function addCategory(name){
+  const sort_order=S.categories.length?Math.max(...S.categories.map(c=>c.sort_order))+1:0;
+  await db.from('categories').insert({name,sort_order});
+}
+async function renameCategory(id,newName){
+  const old=S.categories.find(c=>c.id===id)?.name;
+  await db.from('categories').update({name:newName}).eq('id',id);
+  if(old&&old!==newName) await db.from('grocery_items').update({category:newName}).eq('category',old);
+}
+async function deleteCategory(id){
+  const cat=S.categories.find(c=>c.id===id);
+  if(!cat) return;
+  const fallback=S.categories.find(c=>c.id!==id)?.name||'Autre';
+  await db.from('grocery_items').update({category:fallback}).eq('category',cat.name);
+  await db.from('categories').delete().eq('id',id);
+}
+async function moveCategoryOrder(idx,dir){
+  const j=idx+dir;
+  if(j<0||j>=S.categories.length) return;
+  const a=S.categories[idx],b=S.categories[j];
+  const soA=a.sort_order,soB=b.sort_order;
+  S.categories[idx]={...a,sort_order:soB}; S.categories[j]={...b,sort_order:soA};
+  S.categories.sort((x,y)=>x.sort_order-y.sort_order); render();
+  await Promise.all([db.from('categories').update({sort_order:soB}).eq('id',a.id),db.from('categories').update({sort_order:soA}).eq('id',b.id)]);
+}
+
+/* ── GROCERY CRUD ───────────────────────────────────────────── */
+async function addGrocery(name,quantity,category){
+  const existing=S.groceries.find(g=>g.name.trim().toLowerCase()===name.trim().toLowerCase());
+  if(existing){
+    const merged=mergeQuantities(existing.quantity,quantity);
+    await updateGrocery(existing.id,{quantity:merged||null});
+    showToast(`Quantités fusionnées : ${existing.name} → ${merged||'—'}`);
+    return;
+  }
+  const tmp={id:'tmp-'+Date.now(),name,quantity,category,checked:false};
+  S.groceries.push(tmp); render();
+  const {data}=await db.from('grocery_items').insert({name,quantity:quantity||null,category}).select().single();
+  if(data){S.groceries=S.groceries.map(g=>g.id===tmp.id?data:g); render();}
+}
+async function updateGrocery(id,changes){
+  S.groceries=S.groceries.map(g=>g.id===id?{...g,...changes}:g); render();
+  await db.from('grocery_items').update(changes).eq('id',id);
+}
+async function deleteGrocery(id){
+  S.groceries=S.groceries.filter(g=>g.id!==id); render();
+  await db.from('grocery_items').delete().eq('id',id);
+}
+async function uncheckAll(){
+  S.groceries=S.groceries.map(g=>({...g,checked:false})); render();
+  await db.from('grocery_items').update({checked:false}).neq('checked',false);
+}
+async function deleteChecked(){
+  S.groceries=S.groceries.filter(g=>!g.checked); render();
+  await db.from('grocery_items').delete().eq('checked',true);
+}
+
+/* ── RECIPE CRUD ─────────────────────────────────────────────  */
+async function addRecipe(form,listIndex){
+  const {data}=await db.from('recipes').insert({name:form.name.trim(),description:form.description?.trim()||null,list_index:listIndex,servings:form.servings,emoji:form.emoji,ingredients:form.ingredients||[],photo:form.photo||null}).select().single();
+  if(data){S.recipes.push(data);render();}
+}
+async function updateRecipe(id,form){
+  S.recipes=S.recipes.map(r=>r.id===id?{...r,...form,name:form.name.trim()}:r); render();
+  await db.from('recipes').update({name:form.name.trim(),description:form.description?.trim()||null,servings:form.servings,emoji:form.emoji,ingredients:form.ingredients||[],photo:form.photo||null}).eq('id',id);
+}
+async function deleteRecipe(id){
+  S.recipes=S.recipes.filter(r=>r.id!==id); render();
+  await db.from('recipes').delete().eq('id',id);
+}
+async function addIngsToCourses(recipe,selIdxs){
+  const ings=(recipe.ingredients||[]).filter((_,i)=>selIdxs[i]);
+  if(!ings.length) return;
+  let added=0, merged=0;
+  const newRows=[];
+  for(const ing of ings){
+    const cat=(ing.category&&S.categories.some(c=>c.name===ing.category))?ing.category:(S.categories[0]?.name||'Autre');
+    const existing=S.groceries.find(g=>g.name.trim().toLowerCase()===ing.name.trim().toLowerCase());
+    if(existing){
+      const mergedQty=mergeQuantities(existing.quantity,ing.qty);
+      await updateGrocery(existing.id,{quantity:mergedQty||null});
+      merged++;
+    } else {
+      newRows.push({name:ing.name,quantity:ing.qty||null,category:cat,checked:false});
+      added++;
+    }
+  }
+  if(newRows.length){
+    const {data}=await db.from('grocery_items').insert(newRows).select();
+    if(data){S.groceries.push(...data);render();}
+  }
+  const parts=[];
+  if(added) parts.push(`${added} ajouté${added>1?'s':''}`);
+  if(merged) parts.push(`${merged} fusionné${merged>1?'s':''}`);
+  showToast(`🛒 ${parts.join(' · ')}`);
+}
+
+/* ── EXPENSE CRUD ───────────────────────────────────────────── */
+async function addExpense(store,amount,sessionId,date){
+  const expense_date=date||todayStr();
+  const tmp={id:'tmp-'+Date.now(),store,amount:parseFloat(amount),expense_date,session_id:sessionId};
+  S.expenses=[tmp,...S.expenses]; render();
+  const {data}=await db.from('expenses').insert({store,amount:parseFloat(amount),expense_date,session_id:sessionId}).select().single();
+  if(data){S.expenses=S.expenses.map(e=>e.id===tmp.id?data:e);render();}
+}
+async function updateExpense(id,changes){
+  S.expenses=S.expenses.map(e=>e.id===id?{...e,...changes}:e); render();
+  await db.from('expenses').update(changes).eq('id',id);
+}
+async function deleteExpense(id){
+  S.expenses=S.expenses.filter(e=>e.id!==id); render();
+  await db.from('expenses').delete().eq('id',id);
+}
+
+/* ── TOAST ──────────────────────────────────────────────────── */
+function showToast(msg){
+  document.querySelectorAll('.toast').forEach(t=>t.remove());
+  const t=document.createElement('div'); t.className='toast'; t.textContent=msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(),2500);
+}
+
+/* ── RENDER ─────────────────────────────────────────────────── */
+function render(){
+  const root=document.getElementById('root');
+  if(!S.configured){root.innerHTML=renderSetup();return;}
+  root.innerHTML=renderApp(); updateSyncUI();
+}
+
+function renderSetup(){
+  return `<div class="setup-screen">
+  <div class="setup-logo"><span class="logo-icon">🛒</span><h1>Nos Courses<br>&amp; Recettes</h1><p>Synchronisé en temps réel entre vos téléphones</p></div>
+  <div class="setup-card">
+    <h2>⚙️ Configuration Supabase</h2>
+    <div><div class="field-label">URL du projet</div><input class="text-input" id="sb-url" placeholder="https://xxxx.supabase.co" type="url" autocomplete="off" spellcheck="false" value="${esc(localStorage.getItem('sb_url')||'')}"></div>
+    <div><div class="field-label">Clé publique (anon key)</div><input class="text-input" id="sb-key" placeholder="eyJhbGciOiJIUzI1NiIs…" type="password" autocomplete="off"></div>
+    <button class="btn-primary" data-action="connect">Connecter →</button>
+    <p style="font-size:12px;color:#999;text-align:center">Clés dans Supabase → Project Settings → API</p>
+  </div>
+  <div class="setup-card">
+    <details><summary>📋 Créer les tables SQL (étape 1)</summary>
+      <p style="font-size:13px;color:#666;margin-top:12px;margin-bottom:6px;line-height:1.5">Dans <strong>Supabase → SQL Editor → New query</strong> :</p>
+      <pre class="sql-block">${esc(SQL)}</pre>
+    </details>
+  </div>
+  <p style="text-align:center;font-size:12px;color:#999;line-height:1.6;padding:0 8px">Clés stockées uniquement sur cet appareil.<br>Répète la configuration sur chaque téléphone.</p>
+</div>`;
+}
+
+function renderApp(){
+  const syncColors={connecting:'#F59E0B',connected:'#4ADE80',error:'#F87171'};
+  const syncLabels={connecting:'Connexion…',connected:'Synchro',error:'Erreur'};
+  const checkedCount=S.groceries.filter(g=>g.checked).length;
+
+  let header;
+  if(S.shoppingMode){
+    header=`<div class="header shopping"><button class="back-link" data-action="exit-shopping">← Retour</button><span style="font-weight:800;font-size:14px">🛒 Mode Course</span><span class="checked-pill">${checkedCount} cochés</span></div>`;
+  } else {
+    const titles={courses:'🛒 Nos Courses',recettes:'🍽️ Nos Recettes',bilan:'📊 Bilan'};
+    header=`<div class="header"><h1>${titles[S.tab]||'🛒 Nos Courses'}</h1><button class="sync-pill" data-action="disconnect-confirm" title="Cliquer pour reconfigurer"><span class="sync-dot" style="background:${syncColors[S.syncStatus]};${S.syncStatus==='connected'?'animation:blink 2.5s infinite':''}"></span><span class="sync-label">${syncLabels[S.syncStatus]}</span></button></div>`;
+  }
+
+  let content='';
+  if(S.tab==='courses'&&!S.shoppingMode) content=renderCourses();
+  else if(S.tab==='courses'&&S.shoppingMode) content=renderShoppingMode();
+  else if(S.tab==='recettes') content=renderRecettes();
+  else content=renderBilan();
+
+  const finBtn=S.shoppingMode?`<div class="fin-wrap"><button class="fin-btn" data-action="fin-courses">✓ Fin des courses${checkedCount>0?` — retirer ${checkedCount} article${checkedCount>1?'s':''}`:''}</button></div>`:'';
+  const nav=`<div class="bottom-nav"><button class="nav-btn ${S.tab==='courses'?'active':''}" data-action="tab" data-val="courses"><span class="nav-icon">🛒</span><span class="nav-label">Courses</span></button><button class="nav-btn ${S.tab==='recettes'?'active':''}" data-action="tab" data-val="recettes"><span class="nav-icon">🍽️</span><span class="nav-label">Recettes</span></button><button class="nav-btn ${S.tab==='bilan'?'active':''}" data-action="tab" data-val="bilan"><span class="nav-icon">📊</span><span class="nav-label">Bilan</span></button></div>`;
+
+  let modal='';
+  if(S.modal==='editItem') modal=renderEditItemModal();
+  else if(S.modal==='categories') modal=renderCatModal();
+  else if(S.modal==='recipe') modal=renderRecipeModal();
+  else if(S.modal==='copyRecipe') modal=renderCopyRecipeModal();
+  else if(S.modal==='addToCourses') modal=renderAddToCoursesModal();
+  else if(S.modal==='expense') modal=renderExpenseModal();
+
+  return `${header}<div class="content ${S.shoppingMode?'shop-pad':''}">${content}</div>${finBtn}${nav}${modal}`;
+}
+
+function byCategory(groceries){
+  const map={};
+  S.categories.forEach(c=>{if(groceries.some(g=>g.category===c.name)) map[c.name]=[];});
+  groceries.forEach(g=>{const c=S.categories.some(x=>x.name===g.category)?g.category:(S.categories[0]?.name||'Autre');if(!map[c])map[c]=[];map[c].push(g);});
+  return map;
+}
+
+function renderCourses(){
+  const validCat=S.categories.some(c=>c.name===S.newCat)?S.newCat:(S.categories[0]?.name||'');
+  const catOpts=S.categories.map(c=>`<option value="${esc(c.name)}"${c.name===validCat?' selected':''}>${esc(c.name)}</option>`).join('');
+  const groups=byCategory(S.groceries);
+  let html=`<div class="add-form">
+    <div class="input-row"><div class="ac-wrap"><input class="text-input" id="item-name" placeholder="Ajouter un article…" value="${esc(S.newName)}" autocomplete="off" type="text"><div id="sugg-list" class="suggestions" style="display:none"></div></div><input class="text-input qty-input" id="item-qty" placeholder="Qté" value="${esc(S.newQty)}" type="text"></div>
+    <div class="cat-row"><select class="cat-select" id="item-cat">${catOpts}</select><button class="icon-btn" data-action="open-cats" title="Gérer les catégories">⚙️</button></div>
+    <button class="btn-add" data-action="add-grocery">＋ Ajouter à la liste</button>
+  </div>`;
+  if(S.groceries.length>0) html+=`<button class="start-shop-btn" data-action="enter-shopping">🛒 Démarrer les courses</button>`;
+  else if(!Object.keys(groups).length) html+=`<div class="empty"><div class="empty-icon">🛍️</div><p>Ta liste est vide.<br>Ajoute quelques articles !</p></div>`;
+  Object.entries(groups).forEach(([cat,items])=>{
+    html+=`<div class="section-header"><span class="section-title"><span class="cat-dot" style="background:${getCatColor(cat)}"></span>${esc(cat)}</span><span class="badge">${items.length}</span></div><div class="grocery-list">${items.map(item=>`<div class="g-item" style="--cc:${getCatColor(item.category)}"><span class="g-name">${esc(item.name)}</span>${item.quantity?`<span class="g-qty">${esc(item.quantity)}</span>`:''}<button class="edit-btn" data-action="edit-grocery" data-id="${item.id}">✏️</button><button class="del-btn" data-action="delete-grocery" data-id="${item.id}">×</button></div>`).join('')}</div>`;
+  });
+  return html;
+}
+
+function renderShoppingMode(){
+  const sessionExps=S.expenses.filter(e=>e.session_id===S.shoppingSessionId);
+  const sessionTotal=sessionExps.reduce((s,e)=>s+parseFloat(e.amount||0),0);
+  const groups=byCategory(S.groceries);
+  let html=`<div class="expense-card"><div class="expense-card-head"><span class="expense-card-title">💳 Dépenses de cette sortie</span><span class="expense-session-total">${fmt(sessionTotal)} €</span></div>${sessionExps.map(e=>`<div class="expense-row"><span class="expense-store">${esc(e.store)}</span><span class="expense-amount">${fmt(e.amount)} €</span><button class="edit-btn" data-action="edit-expense" data-id="${e.id}">✏️</button><button class="del-btn" data-action="delete-expense" data-id="${e.id}">×</button></div>`).join('')}<button class="add-expense-btn" data-action="open-expense">＋ Ajouter une dépense</button></div>`;
+  if(!S.groceries.length){html+=`<div class="empty"><div class="empty-icon">🎉</div><p>Liste vide !<br>Toutes les courses sont faites.</p></div>`;}
+  else Object.entries(groups).forEach(([cat,items])=>{
+    html+=`<div class="section-header"><span class="section-title"><span class="cat-dot" style="background:${getCatColor(cat)}"></span>${esc(cat)}</span><span class="badge">${items.filter(i=>!i.checked).length}/${items.length}</span></div><div class="grocery-list">${items.map(item=>`<div class="shop-item ${item.checked?'done':''}" data-action="toggle-checked" data-id="${item.id}"><div class="shop-circle">${item.checked?'✓':''}</div><div class="shop-info"><div class="shop-name">${esc(item.name)}</div>${item.quantity?`<div class="shop-qty">${esc(item.quantity)}</div>`:''}</div></div>`).join('')}</div>`;
+  });
+  return html;
+}
+
+function renderRecettes(){
+  const tabs=RECIPE_LISTS.map((name,i)=>`<button class="rtab ${S.recipeList===i?'active':''}" data-action="recipe-tab" data-val="${i}">${LIST_ICONS[i]} ${name.replace('Recettes ','').replace('Idée recette','Idées')}</button>`).join('');
+  const cur=S.recipes.filter(r=>r.list_index===S.recipeList);
+  const cards=cur.map(r=>{const ings=Array.isArray(r.ingredients)?r.ingredients:[];const thumb=r.photo?`<img class="r-thumb" src="${r.photo}" alt="">`:`<span class="r-emoji">${r.emoji||'🍽️'}</span>`;return `<div class="recipe-card">${thumb}<div class="r-info"><div class="r-name">${esc(r.name)}</div>${r.description?`<div class="r-desc">${esc(r.description)}</div>`:''} ${ings.length?`<div class="r-ing-count">🥄 ${ings.length} ingrédient${ings.length>1?'s':''}</div>`:''}</div><div class="r-actions"><span class="r-srv">👥 ${r.servings}</span><button class="r-edit-btn" data-action="edit-recipe" data-id="${r.id}">✏️ Modifier</button><button class="copy-recipe-btn" data-action="copy-recipe" data-id="${r.id}">📋 Copier</button>${ings.length?`<button class="add-courses-btn" data-action="add-to-courses" data-id="${r.id}">→ Courses</button>`:''}<button class="del-btn" data-action="delete-recipe" data-id="${r.id}">×</button></div></div>`;}).join('');
+  return `<div class="recipe-tabs">${tabs}</div><div class="recipe-list">${!cur.length?`<div class="empty" style="padding:28px 20px"><div class="empty-icon">${LIST_ICONS[S.recipeList]}</div><p>Aucune recette dans<br><strong>${RECIPE_LISTS[S.recipeList]}</strong></p></div>`:''}${cards}<button class="add-recipe-card" data-action="new-recipe">＋ Ajouter une recette</button></div>`;
+}
+
+function renderTrendChart(groups,period){
+  if(groups.length<2) return '';
+  const chrono=[...groups].reverse();
+  const max=Math.max(...chrono.map(g=>g.total),1);
+  const w=340,h=120,padBottom=22,padTop=10,gap=8;
+  const n=chrono.length;
+  const barW=(w-(n-1)*gap)/n;
+  const bars=chrono.map((g,i)=>{
+    const barH=Math.max(2,Math.round((g.total/max)*(h-padTop-padBottom)));
+    const x=i*(barW+gap), y=h-padBottom-barH;
+    const isCur=i===n-1;
+    const label=period==='semaine'?fmtShortWeekLabel(g.key):fmtShortMonthLabel(g.key);
+    return `<g><rect x="${x.toFixed(1)}" y="${y}" width="${barW.toFixed(1)}" height="${barH}" rx="4" fill="${isCur?'#C8A45A':'#B9CDB9'}"></rect><text x="${(x+barW/2).toFixed(1)}" y="${h-6}" text-anchor="middle" font-size="9" fill="#999">${esc(label)}</text><text x="${(x+barW/2).toFixed(1)}" y="${y-4}" text-anchor="middle" font-size="9" font-weight="700" fill="#666">${g.total>=100?Math.round(g.total):fmt(g.total).replace(',00','')}</text></g>`;
+  }).join('');
+  return `<div class="trend-chart-card"><div class="trend-chart-title">📈 Évolution ${period==='semaine'?'hebdomadaire':'mensuelle'}</div><svg viewBox="0 0 ${w} ${h}" class="trend-svg" preserveAspectRatio="none">${bars}</svg></div>`;
+}
+
+function renderBilan(){
+  const today=todayStr();
+  const curKey=S.bilanPeriod==='semaine'?getWeekMonday(today):getMonthKey(today);
+  const groups=groupExpenses(S.expenses,S.bilanPeriod);
+  const curGroup=groups.find(g=>g.key===curKey);
+  const curTotal=curGroup?.total||0;
+  const allTotal=groups.reduce((s,g)=>s+g.total,0);
+  const periodLabel=S.bilanPeriod==='semaine'?'cette semaine':'ce mois';
+  const cards=groups.map(g=>{
+    const expanded=S.expandedBilanKey===g.key;
+    const detailRows=[...g.items].sort((a,b)=>(b.expense_date||'').localeCompare(a.expense_date||'')).map(e=>`<div class="bilan-detail-row"><span class="bilan-detail-date">${fmtShortDate(e.expense_date)}</span><span class="bilan-detail-store">${esc(e.store)}</span><span class="bilan-detail-amt">${fmt(e.amount)} €</span><button class="edit-btn" data-action="edit-expense" data-id="${e.id}">✏️</button><button class="del-btn" data-action="delete-expense" data-id="${e.id}">×</button></div>`).join('');
+    return `<div class="bilan-card"><div class="bilan-card-head" data-action="toggle-bilan-group" data-val="${g.key}"><span class="bilan-period-label">${esc(g.label)}</span><span style="display:flex;align-items:center;gap:8px"><span class="bilan-total-amount">${fmt(g.total)} €</span><span class="bilan-expand-arrow">${expanded?'▾':'▸'}</span></span></div><div class="bilan-body">${g.stores.map(s=>`<div class="bilan-store-row"><span class="bilan-store-name">${esc(s.store)}</span><div class="bilan-bar-track"><div class="bilan-bar-fill" style="width:${s.pct}%"></div></div><span class="bilan-store-amt">${fmt(s.amount)} €</span></div>`).join('')}</div>${expanded?`<div class="bilan-detail-list">${detailRows}</div>`:''}</div>`;
+  }).join('');
+  return `<div class="bilan-period-tabs"><button class="bilan-ptab ${S.bilanPeriod==='semaine'?'active':''}" data-action="bilan-period" data-val="semaine">📅 Par semaine</button><button class="bilan-ptab ${S.bilanPeriod==='mois'?'active':''}" data-action="bilan-period" data-val="mois">📆 Par mois</button></div><div class="bilan-summary"><div class="bilan-sum-label">Dépenses ${esc(periodLabel)}</div><div class="bilan-sum-amount">${fmt(curTotal)} €</div><div class="bilan-sum-sub">${curGroup?.stores.length||0} magasin${(curGroup?.stores.length||0)>1?'s':''}${groups.length>1?` · Total affiché : ${fmt(allTotal)} €`:''}</div></div>${renderTrendChart(groups,S.bilanPeriod)}${!groups.length?`<div class="empty"><div class="empty-icon">📊</div><p>Aucune dépense enregistrée.<br>Lance tes courses pour commencer !</p></div>`:cards}<p style="text-align:center;font-size:11px;color:#BBB;margin-top:4px">Touche une période pour voir le détail des dépenses</p>`;
+}
+
+function renderEditItemModal(){
+  const item=S.groceries.find(g=>g.id===S.editItemId); if(!item) return '';
+  return `<div class="overlay" data-action="close-modal"><div class="sheet"><div class="handle"></div><div class="sheet-title">Modifier l'article</div><div><div class="field-label">Nom</div><input class="text-input" id="edit-name" style="width:100%" value="${esc(item.name)}" autofocus></div><div><div class="field-label">Quantité</div><input class="text-input" id="edit-qty" style="width:100%" placeholder="Ex : 500g, 2 pièces…" value="${esc(item.quantity||'')}"></div><div class="modal-actions"><button class="btn-cancel" data-action="close-modal">Annuler</button><button class="btn-save" data-action="save-edit-item">Enregistrer</button></div><button class="btn-danger" data-action="confirm-delete-grocery" data-id="${item.id}">🗑 Supprimer l'article</button></div></div>`;
+}
+
+function renderCatModal(){
+  const rows=S.categories.map((cat,i)=>{
+    if(S.editingCatIdx===i) return `<div class="cat-row-item"><span class="cat-color-dot" style="background:${COLORS[i%COLORS.length]}"></span><input class="cat-edit-input" id="cat-edit-inp" value="${esc(cat.name)}"><button class="cat-save-btn" data-action="save-edit-cat" data-idx="${i}">OK</button><button class="cat-action-btn" data-action="cancel-edit-cat">✕</button></div>`;
+    return `<div class="cat-row-item"><span class="cat-color-dot" style="background:${COLORS[i%COLORS.length]}"></span><span class="cat-item-name">${esc(cat.name)}</span><div class="cat-order-btns"><button class="cat-order-btn" data-action="move-cat" data-idx="${i}" data-dir="-1" ${i===0?'disabled':''}>↑</button><button class="cat-order-btn" data-action="move-cat" data-idx="${i}" data-dir="1" ${i===S.categories.length-1?'disabled':''}>↓</button></div><button class="cat-action-btn" data-action="start-edit-cat" data-idx="${i}">✏️</button><button class="cat-action-btn" data-action="delete-cat" data-id="${cat.id}">🗑</button></div>`;
+  }).join('');
+  return `<div class="overlay" data-action="close-modal"><div class="sheet"><div class="handle"></div><div class="sheet-title">Gérer les catégories</div><div class="cat-list">${rows}</div><div><div class="field-label">Nouvelle catégorie</div><div class="new-cat-row"><input class="text-input" id="new-cat-inp" placeholder="Nom de la catégorie…" value="${esc(S.newCatName)}" style="flex:1"><button class="btn-add-cat" data-action="add-cat">＋ Ajouter</button></div></div><button class="btn-save" data-action="close-modal">Fermer</button></div></div>`;
+}
+
+function renderRecipeModal(){
+  const f=S.recipeForm, ings=f.ingredients||[];
+  const catOpts=S.categories.map(c=>`<option value="${esc(c.name)}"${c.name===S.newIngCat?' selected':''}>${esc(c.name)}</option>`).join('');
+  const ingList=ings.map((ing,i)=>`<div class="ing-item"><span class="ing-cat-dot" style="background:${getCatColor(ing.category||'')}"></span><span class="ing-name">${esc(ing.name)}</span>${ing.qty?`<span class="ing-qty-badge">${esc(ing.qty)}</span>`:''}<span style="font-size:11px;color:#BBB;flex-shrink:0">${esc(ing.category||'')}</span><button class="ing-del" data-action="remove-ing" data-idx="${i}">×</button></div>`).join('');
+  const emojiBtns=EMOJIS.map(em=>`<button class="emo-btn ${f.emoji===em?'sel':''}" data-action="pick-emoji" data-val="${em}">${em}</button>`).join('');
+  const title=S.recipeFormId?'✏️ Modifier la recette':`${LIST_ICONS[S.recipeList]} ${RECIPE_LISTS[S.recipeList]}`;
+  const photoBlock=f.photo
+    ? `<div class="recipe-photo-preview"><img src="${f.photo}" alt=""><button class="photo-remove-btn" data-action="remove-photo">✕</button></div>`
+    : `<label class="photo-upload-btn">📷 Ajouter une photo<input type="file" id="recipe-photo-input" accept="image/*" style="display:none"></label>`;
+  return `<div class="overlay" data-action="close-modal"><div class="sheet"><div class="handle"></div><div class="sheet-title">${title}</div><div><div class="field-label">Nom du plat</div><input class="text-input" id="recipe-name" style="width:100%" placeholder="Ex : Poulet rôti…" value="${esc(f.name)}" autofocus></div><div><div class="field-label">Notes (optionnel)</div><input class="text-input" id="recipe-desc" style="width:100%" placeholder="Accompagnements, source…" value="${esc(f.description||'')}"></div><div><div class="field-label">Photo (optionnel)</div>${photoBlock}</div><div><div class="field-label">Ingrédients</div>${ings.length?`<div class="ing-list" style="margin-bottom:8px">${ingList}</div>`:''}<div class="ing-add-block"><div class="ing-add-row"><input class="ing-input" id="ing-name" placeholder="Ingrédient…" value="${esc(S.newIngName)}"><input class="ing-input ing-qty-input" id="ing-qty" placeholder="Qté" value="${esc(S.newIngQty)}"></div><div class="ing-cat-row"><select class="ing-cat-select" id="ing-cat">${catOpts}</select><button class="ing-add-btn" data-action="add-ing">＋ Ajouter</button></div></div></div><div><div class="field-label">Emoji</div><div class="emoji-grid">${emojiBtns}</div></div><div><div class="field-label">Personnes</div><div class="srv-row"><button class="srv-btn" data-action="srv-minus">−</button><span class="srv-val" id="srv-val">${f.servings}</span><button class="srv-btn" data-action="srv-plus">＋</button></div></div><div class="modal-actions"><button class="btn-cancel" data-action="close-modal">Annuler</button><button class="btn-save" data-action="save-recipe">${S.recipeFormId?'Enregistrer les modifications':'Enregistrer'}</button></div></div></div>`;
+}
+
+function renderAddToCoursesModal(){
+  const r=S.addToCoursesRecipe; if(!r) return '';
+  const ings=Array.isArray(r.ingredients)?r.ingredients:[];
+  const selCount=Object.values(S.selectedIngs).filter(Boolean).length;
+  const allSel=selCount===ings.length;
+  const rows=ings.map((ing,i)=>{
+    const cat=ing.category&&S.categories.some(c=>c.name===ing.category)?ing.category:(S.categories[0]?.name||'Autre');
+    return `<div class="ing-check-row" data-action="toggle-ing" data-idx="${i}" style="opacity:${S.selectedIngs[i]?1:.45}"><div class="ing-checkbox ${S.selectedIngs[i]?'on':''}">${S.selectedIngs[i]?'✓':''}</div><div class="ing-check-info"><div class="ing-check-name">${esc(ing.name)}</div><div class="ing-check-qty">${esc(ing.qty||'—')}</div></div><span class="ing-check-cat"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${getCatColor(cat)};margin-right:4px;vertical-align:middle"></span>${esc(cat)}</span></div>`;
+  }).join('');
+  return `<div class="overlay" data-action="close-modal"><div class="sheet"><div class="handle"></div><div class="sheet-title">${r.emoji||'🍽️'} ${esc(r.name)}</div><div class="select-all-row"><span class="select-count">${selCount} sélectionné${selCount>1?'s':''}</span><button class="select-all-btn" data-action="toggle-all-ings" data-all="${allSel?'1':'0'}">${allSel?'Tout désélectionner':'Tout sélectionner'}</button></div><div class="ing-select-list">${rows}</div><div class="modal-actions"><button class="btn-cancel" data-action="close-modal">Annuler</button><button class="btn-save" data-action="confirm-add-to-courses" ${!selCount?'disabled':''}>🛒 Ajouter${selCount?` ${selCount}`:''}</button></div></div></div>`;
+}
+
+function renderExpenseModal(){
+  const recent=[...new Set(S.expenses.map(e=>e.store))].filter(Boolean).slice(0,5);
+  const picks=recent.map(s=>`<button class="store-pick ${S.expenseForm.store===s?'sel':''}" data-action="pick-store" data-val="${esc(s)}">${esc(s)}</button>`).join('');
+  const isEdit=!!S.editExpenseId;
+  return `<div class="overlay" data-action="close-modal"><div class="sheet"><div class="handle"></div><div class="sheet-title">${isEdit?'✏️ Modifier la dépense':'💳 Ajouter une dépense'}</div>${recent.length?`<div><div class="field-label">Magasin récent</div><div class="store-picks">${picks}</div></div>`:''}<div><div class="field-label">Nom du magasin</div><input class="text-input" id="exp-store" style="width:100%" placeholder="Ex : Carrefour, Lidl…" value="${esc(S.expenseForm.store)}" autofocus></div><div><div class="field-label">Montant</div><div class="amount-wrap"><input class="text-input" id="exp-amount" style="width:100%" placeholder="0,00" type="number" step="0.01" min="0" inputmode="decimal" value="${esc(String(S.expenseForm.amount||''))}"><span class="amount-suffix">€</span></div></div><div><div class="field-label">Date</div><input class="text-input" id="exp-date" style="width:100%" type="date" value="${esc(S.expenseForm.date||todayStr())}"></div><div class="modal-actions"><button class="btn-cancel" data-action="close-modal">Annuler</button><button class="btn-save" data-action="save-expense">Enregistrer</button></div>${isEdit?`<button class="btn-danger" data-action="confirm-delete-expense" data-id="${S.editExpenseId}">🗑 Supprimer la dépense</button>`:''}</div></div>`;
+}
+
+/* ── COPY RECIPE MODAL ──────────────────────────────────────── */
+function renderCopyRecipeModal(){
+  const recipe=S.recipes.find(r=>r.id===S.copyRecipeId); if(!recipe) return '';
+  const rows=RECIPE_LISTS.map((name,i)=>{
+    if(i===recipe.list_index) return '';
+    return `<div class="copy-dest-row"><span class="copy-dest-icon">${LIST_ICONS[i]}</span><span class="copy-dest-name">${esc(name)}</span><div class="copy-dest-btns"><button class="btn-copy-to" data-action="copy-recipe-to" data-id="${recipe.id}" data-val="${i}">📋 Copier</button><button class="btn-move-to" data-action="move-recipe-to" data-id="${recipe.id}" data-val="${i}">↗ Déplacer</button></div></div>`;
+  }).join('');
+  return `<div class="overlay" data-action="close-modal"><div class="sheet"><div class="handle"></div><div class="sheet-title">${esc(recipe.emoji||'🍽️')} ${esc(recipe.name)}</div><p style="font-size:13px;color:#999;margin-bottom:4px">Copier ou déplacer vers une autre liste :</p><div class="copy-dest-list">${rows}</div><button class="btn-cancel" style="width:100%;margin-top:4px" data-action="close-modal">Annuler</button></div></div>`;
+}
+
+/* ── EVENTS ─────────────────────────────────────────────────── */
+document.addEventListener('click', async e => {
+  if(e.target.classList.contains('overlay')){closeModal();return;}
+  const btn=e.target.closest('[data-action]'); if(!btn) return;
+  const {action,val,id}=btn.dataset;
+  const idx=btn.dataset.idx!==undefined?parseInt(btn.dataset.idx):undefined;
+  const dir=btn.dataset.dir!==undefined?parseInt(btn.dataset.dir):undefined;
+
+  switch(action){
+    case 'connect': await doConnect(); break;
+    case 'tab': S.tab=val; S.shoppingMode=false; render(); break;
+    case 'open-cats': S.modal='categories'; S.editingCatIdx=null; S.newCatName=''; render(); setTimeout(()=>document.getElementById('new-cat-inp')?.focus(),50); break;
+    case 'add-grocery': await doAddGrocery(); break;
+    case 'edit-grocery': S.modal='editItem'; S.editItemId=id; render(); setTimeout(()=>document.getElementById('edit-name')?.focus(),50); break;
+    case 'save-edit-item': await doSaveEditItem(); break;
+    case 'confirm-delete-grocery': await deleteGrocery(id); closeModal(); break;
+    case 'delete-grocery': await deleteGrocery(id); break;
+    case 'enter-shopping': await uncheckAll(); S.shoppingMode=true; S.shoppingSessionId='s-'+Date.now(); saveShoppingState(); render(); break;
+    case 'exit-shopping': S.shoppingMode=false; clearShoppingState(); render(); break;
+    case 'toggle-checked': await updateGrocery(id,{checked:!S.groceries.find(g=>g.id===id)?.checked}); break;
+    case 'fin-courses': await doFinCourses(); break;
+    case 'open-expense': S.modal='expense'; S.editExpenseId=null; S.expenseForm={store:'',amount:'',date:todayStr()}; render(); setTimeout(()=>document.getElementById('exp-store')?.focus(),50); break;
+    case 'edit-expense': { const exp=S.expenses.find(x=>x.id===id); if(!exp) break; S.modal='expense'; S.editExpenseId=id; S.expenseForm={store:exp.store,amount:String(exp.amount),date:exp.expense_date||todayStr()}; render(); setTimeout(()=>document.getElementById('exp-store')?.focus(),50); break; }
+    case 'pick-store': S.expenseForm={...S.expenseForm,store:val}; render(); setTimeout(()=>document.getElementById('exp-amount')?.focus(),50); break;
+    case 'save-expense': await doSaveExpense(); break;
+    case 'delete-expense': await deleteExpense(id); break;
+    case 'confirm-delete-expense': await deleteExpense(id); closeModal(); break;
+    case 'bilan-period': S.bilanPeriod=val; render(); break;
+    case 'toggle-bilan-group': S.expandedBilanKey=S.expandedBilanKey===val?null:val; render(); break;
+    case 'start-edit-cat': S.editingCatIdx=idx; S.editingCatVal=S.categories[idx]?.name||''; render(); setTimeout(()=>document.getElementById('cat-edit-inp')?.focus(),50); break;
+    case 'cancel-edit-cat': S.editingCatIdx=null; render(); break;
+    case 'save-edit-cat': await doSaveEditCat(idx); break;
+    case 'delete-cat': if(S.categories.length<=1){showToast('Impossible de supprimer la dernière !');break;} await deleteCategory(id); break;
+    case 'move-cat': await moveCategoryOrder(idx,dir); break;
+    case 'add-cat': await doAddCat(); break;
+    case 'recipe-tab': S.recipeList=parseInt(val); render(); break;
+    case 'new-recipe': S.modal='recipe'; S.recipeFormId=null; S.recipeForm={name:'',description:'',servings:2,emoji:'🍝',ingredients:[],photo:null}; S.newIngName=''; S.newIngQty=''; S.newIngCat=S.categories[0]?.name||''; render(); setTimeout(()=>document.getElementById('recipe-name')?.focus(),50); break;
+    case 'edit-recipe': { const r=S.recipes.find(x=>x.id===id); if(!r) break; S.modal='recipe'; S.recipeFormId=id; S.recipeForm={...r,ingredients:Array.isArray(r.ingredients)?[...r.ingredients]:[],photo:r.photo||null}; S.newIngName=''; S.newIngQty=''; S.newIngCat=S.categories[0]?.name||''; render(); setTimeout(()=>document.getElementById('recipe-name')?.focus(),50); break; }
+    case 'remove-photo': S.recipeForm.photo=null; render(); break;
+    case 'save-recipe': await doSaveRecipe(); break;
+    case 'delete-recipe': await deleteRecipe(id); break;
+    case 'add-ing': doAddIng(); break;
+    case 'remove-ing': S.recipeForm.ingredients=S.recipeForm.ingredients.filter((_,j)=>j!==idx); render(); break;
+    case 'pick-emoji': S.recipeForm.emoji=val; render(); break;
+    case 'srv-minus': if(S.recipeForm.servings>1){S.recipeForm.servings--;const el=document.getElementById('srv-val');if(el)el.textContent=S.recipeForm.servings;} break;
+    case 'srv-plus': S.recipeForm.servings++;{const el=document.getElementById('srv-val');if(el)el.textContent=S.recipeForm.servings;} break;
+    case 'add-to-courses': { const r=S.recipes.find(x=>x.id===id); if(!r?.ingredients?.length){showToast('Aucun ingrédient dans cette recette');break;} S.modal='addToCourses'; S.addToCoursesRecipe=r; S.selectedIngs={}; r.ingredients.forEach((_,i2)=>S.selectedIngs[i2]=true); render(); break; }
+    case 'toggle-ing': S.selectedIngs[idx]=!S.selectedIngs[idx]; render(); break;
+    case 'toggle-all-ings': { const a=btn.dataset.all==='1'; S.addToCoursesRecipe?.ingredients.forEach((_,i2)=>S.selectedIngs[i2]=!a); render(); break; }
+    case 'confirm-add-to-courses': await addIngsToCourses(S.addToCoursesRecipe,S.selectedIngs); closeModal(); break;
+    case 'copy-recipe': S.modal='copyRecipe'; S.copyRecipeId=id; render(); break;
+    case 'copy-recipe-to': await copyRecipeTo(id,parseInt(val),false); break;
+    case 'move-recipe-to': await copyRecipeTo(id,parseInt(val),true); break;
+    case 'close-modal': closeModal(); break;
+    case 'disconnect-confirm': if(confirm('Se déconnecter et réinitialiser la configuration ?')){localStorage.removeItem('sb_url');localStorage.removeItem('sb_key');db=null;S.configured=false;S.categories=[];S.groceries=[];S.recipes=[];S.expenses=[];render();} break;
+  }
+});
+
+document.addEventListener('input', e => {
+  const {id,value}=e.target;
+  if(id==='item-name'){S.newName=value;updateSuggestionsDOM(value);}
+  else if(id==='item-qty') S.newQty=value;
+  else if(id==='cat-edit-inp') S.editingCatVal=value;
+  else if(id==='new-cat-inp') S.newCatName=value;
+  else if(id==='recipe-name') S.recipeForm.name=value;
+  else if(id==='recipe-desc') S.recipeForm.description=value;
+  else if(id==='ing-name') S.newIngName=value;
+  else if(id==='ing-qty') S.newIngQty=value;
+  else if(id==='exp-store') S.expenseForm.store=value;
+  else if(id==='exp-amount') S.expenseForm.amount=value;
+  else if(id==='exp-date') S.expenseForm.date=value;
+});
+
+document.addEventListener('change', e => {
+  if(e.target.id==='item-cat') S.newCat=e.target.value;
+  else if(e.target.id==='ing-cat') S.newIngCat=e.target.value;
+  else if(e.target.id==='recipe-photo-input' && e.target.files?.[0]) handlePhotoSelect(e.target.files[0]);
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape'){closeModal();return;}
+  if(e.key!=='Enter') return;
+  const id=e.target.id;
+  if(id==='item-name'||id==='item-qty') doAddGrocery();
+  else if(id==='new-cat-inp') doAddCat();
+  else if(id==='cat-edit-inp'){const i=S.editingCatIdx;if(i!==null) doSaveEditCat(i);}
+  else if(id==='recipe-name'||id==='recipe-desc') { /* let save button handle */ }
+  else if(id==='ing-name'||id==='ing-qty') doAddIng();
+  else if(id==='exp-store') document.getElementById('exp-amount')?.focus();
+  else if(id==='exp-amount') doSaveExpense();
+  else if(id==='sb-url') document.getElementById('sb-key')?.focus();
+  else if(id==='sb-key') doConnect();
+  else if(id==='edit-name'||id==='edit-qty') doSaveEditItem();
+});
+
+document.addEventListener('focusin', e => { if(e.target.id==='item-name') updateSuggestionsDOM(e.target.value); });
+document.addEventListener('focusout', e => { if(e.target.id==='item-name') setTimeout(hideSuggestions,160); });
+document.addEventListener('mousedown', e => {
+  const item=e.target.closest('.sugg-item'); if(!item) return;
+  e.preventDefault();
+  const {suggName:name,suggQty:qty,suggCat:cat}=item.dataset;
+  const nameEl=document.getElementById('item-name');
+  const qtyEl=document.getElementById('item-qty');
+  const catEl=document.getElementById('item-cat');
+  if(nameEl) nameEl.value=name;
+  if(qtyEl) qtyEl.value=qty;
+  if(catEl&&cat&&S.categories.some(c=>c.name===cat)) catEl.value=cat;
+  S.newName=name; S.newQty=qty; S.newCat=cat;
+  hideSuggestions();
+});
+
+/* ── ACTION HELPERS ─────────────────────────────────────────── */
+function closeModal(){ S.modal=null; S.editItemId=null; S.recipeFormId=null; S.editingCatIdx=null; S.addToCoursesRecipe=null; S.copyRecipeId=null; S.editExpenseId=null; render(); }
+
+async function copyRecipeTo(recipeId,destIdx,move){
+  const recipe=S.recipes.find(r=>r.id===recipeId); if(!recipe) return;
+  closeModal();
+  if(move){
+    S.recipes=S.recipes.map(r=>r.id===recipeId?{...r,list_index:destIdx}:r); render();
+    await db.from('recipes').update({list_index:destIdx}).eq('id',recipeId);
+    S.recipeList=destIdx; render();
+    showToast(`↗ Déplacée vers ${RECIPE_LISTS[destIdx]}`);
+  } else {
+    const {data}=await db.from('recipes').insert({name:recipe.name,description:recipe.description,list_index:destIdx,servings:recipe.servings,emoji:recipe.emoji,ingredients:recipe.ingredients||[],photo:recipe.photo||null}).select().single();
+    if(data){S.recipes.push(data);render();}
+    showToast(`📋 Copiée dans ${RECIPE_LISTS[destIdx]}`);
+  }
+}
+
+async function doConnect(){
+  const url=(document.getElementById('sb-url')?.value||'').trim();
+  const key=(document.getElementById('sb-key')?.value||'').trim();
+  if(!url||!key){showToast('Remplis les deux champs !');return;}
+  try {
+    localStorage.setItem('sb_url',url); localStorage.setItem('sb_key',key);
+    initDB(url,key); S.configured=true; S.syncStatus='connecting'; render();
+    await fetchAll();
+    subscribeRealtime();
+  } catch(err){ console.error(err); S.syncStatus='error'; render(); showToast('Erreur de connexion. Vérifie tes clés.'); }
+}
+
+async function doAddGrocery(){
+  const name=(document.getElementById('item-name')?.value||S.newName).trim();
+  if(!name){showToast('Entre un article !');return;}
+  const qty=(document.getElementById('item-qty')?.value||S.newQty).trim();
+  const cat=document.getElementById('item-cat')?.value||S.newCat||S.categories[0]?.name||'Autre';
+  addToHist(name,qty,cat);
+  S.newName=''; S.newQty='';
+  const nameEl=document.getElementById('item-name'); if(nameEl) nameEl.value='';
+  const qtyEl=document.getElementById('item-qty'); if(qtyEl) qtyEl.value='';
+  hideSuggestions();
+  await addGrocery(name,qty,cat);
+}
+
+async function doSaveEditItem(){
+  const name=(document.getElementById('edit-name')?.value||'').trim();
+  const qty=(document.getElementById('edit-qty')?.value||'').trim();
+  if(!name){showToast('Nom vide !');return;}
+  await updateGrocery(S.editItemId,{name,quantity:qty||null});
+  closeModal();
+}
+
+async function doAddCat(){
+  const inp=document.getElementById('new-cat-inp');
+  const name=(inp?.value||S.newCatName).trim(); if(!name) return;
+  if(S.categories.some(c=>c.name.toLowerCase()===name.toLowerCase())){showToast('Déjà existante !');return;}
+  S.newCatName=''; if(inp) inp.value='';
+  await addCategory(name);
+}
+
+async function doSaveEditCat(idx){
+  const inp=document.getElementById('cat-edit-inp');
+  const name=(inp?.value||S.editingCatVal).trim(); if(!name) return;
+  const cat=S.categories[idx]; if(!cat) return;
+  S.editingCatIdx=null;
+  await renameCategory(cat.id,name);
+}
+
+function doAddIng(){
+  const name=(document.getElementById('ing-name')?.value||S.newIngName).trim(); if(!name) return;
+  const qty=(document.getElementById('ing-qty')?.value||S.newIngQty).trim();
+  const cat=document.getElementById('ing-cat')?.value||S.newIngCat||S.categories[0]?.name||'Autre';
+  S.recipeForm.ingredients=[...(S.recipeForm.ingredients||[]),{name,qty,category:cat}];
+  S.newIngName=''; S.newIngQty=''; render();
+  setTimeout(()=>document.getElementById('ing-name')?.focus(),50);
+}
+
+async function doSaveRecipe(){
+  const name=(document.getElementById('recipe-name')?.value||S.recipeForm.name||'').trim();
+  if(!name){showToast('Entre un nom !');return;}
+  const desc=(document.getElementById('recipe-desc')?.value||S.recipeForm.description||'').trim();
+  const form={...S.recipeForm,name,description:desc};
+  if(S.recipeFormId) await updateRecipe(S.recipeFormId,form);
+  else await addRecipe(form,S.recipeList);
+  closeModal();
+}
+
+async function doSaveExpense(){
+  const store=(document.getElementById('exp-store')?.value||S.expenseForm.store||'').trim();
+  if(!store){showToast('Indique le nom du magasin !');return;}
+  const amount=parseFloat(document.getElementById('exp-amount')?.value||S.expenseForm.amount||'0');
+  if(isNaN(amount)||amount<=0){showToast('Montant invalide !');return;}
+  const date=document.getElementById('exp-date')?.value||S.expenseForm.date||todayStr();
+  if(S.editExpenseId){
+    const eid=S.editExpenseId;
+    closeModal();
+    await updateExpense(eid,{store,amount,expense_date:date});
+    showToast('Dépense modifiée ✓');
+  } else {
+    const sid=S.shoppingSessionId;
+    closeModal();
+    await addExpense(store,amount,sid,date);
+  }
+}
+
+async function doFinCourses(){
+  const n=S.groceries.filter(g=>g.checked).length;
+  await deleteChecked();
+  S.shoppingMode=false; clearShoppingState(); render();
+  showToast(n>0?`${n} article${n>1?'s':''} retiré${n>1?'s':''} ✓`:'Mode course terminé');
+}
+
+/* ── SHOPPING MODE PERSISTENCE ──────────────────────────────── */
+function saveShoppingState(){
+  try{ localStorage.setItem('shopping_state', JSON.stringify({mode:S.shoppingMode,sessionId:S.shoppingSessionId})); }catch(e){}
+}
+function clearShoppingState(){ try{ localStorage.removeItem('shopping_state'); }catch(e){} }
+
+/* ── RECIPE PHOTO ───────────────────────────────────────────── */
+function handlePhotoSelect(file){
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      const maxW=720;
+      const scale=Math.min(1,maxW/img.width);
+      const w=Math.round(img.width*scale), h=Math.round(img.height*scale);
+      const canvas=document.createElement('canvas');
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      S.recipeForm.photo=canvas.toDataURL('image/jpeg',0.72);
+      render();
+    };
+    img.src=ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ── AUTOCOMPLETE ───────────────────────────────────────────── */
+function updateSuggestionsDOM(val){
+  const list=document.getElementById('sugg-list'); if(!list) return;
+  if(!val||val.length<2){list.style.display='none';return;}
+  const matches=getHist().filter(h=>h.name.toLowerCase().includes(val.toLowerCase())).slice(0,6);
+  if(!matches.length){list.style.display='none';return;}
+  list.innerHTML=matches.map(s=>`<div class="sugg-item" data-sugg-name="${esc(s.name)}" data-sugg-qty="${esc(s.quantity||'')}" data-sugg-cat="${esc(s.category||'')}"><span class="sugg-name">${esc(s.name)}</span><span class="sugg-meta"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${getCatColor(s.category)};margin-right:4px;vertical-align:middle"></span>${s.quantity?esc(s.quantity)+' · ':''}${esc(s.category)}</span></div>`).join('');
+  list.style.display='block';
+}
+function hideSuggestions(){ const l=document.getElementById('sugg-list'); if(l) l.style.display='none'; }
+
+/* ── BOOT ───────────────────────────────────────────────────── */
+(async function boot(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('shopping_state')||'null');
+    if(saved&&saved.mode){ S.shoppingMode=true; S.shoppingSessionId=saved.sessionId; S.tab='courses'; }
+  }catch(e){}
+  const url=localStorage.getItem('sb_url'), key=localStorage.getItem('sb_key');
+  if(url&&key){
+    try{ initDB(url,key); S.configured=true; S.syncStatus='connecting'; render(); await fetchAll(); subscribeRealtime(); }
+    catch(err){ console.error(err); S.syncStatus='error'; render(); }
+  } else { render(); }
+})();
+</script>
+</body>
+</html>
